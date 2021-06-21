@@ -10,7 +10,7 @@
                             {{ Session::get('mensaje')}}
                         @endif
 
-                                <div class="container">
+                                <div class="table-responsive">
                                     <table class="table table-light">
                                         <thead class="thead-light">
                                             <tr>
@@ -43,7 +43,7 @@
                                                     <td>{{$persona->movil}}</td>
                                                     <td>{{$persona->serial}}</td>
                                                     <td>{{$persona->correo}}</td>
-                                                    <td>{{$persona->direccion}}</td>
+                                                    <td>{{$persona->direccion->direccion}}</td>
                                                     <td><a href="{{url('/persona/'.$persona->id.'/edit')}}">
                                                             <button type="submit" onclick="return confirm('¿Desea editar este registro?')" class="btn btn-dark">EDITAR</button>
                                                         </a>

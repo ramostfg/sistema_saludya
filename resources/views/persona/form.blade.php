@@ -85,28 +85,28 @@
         <div class="row mb-3">
             <label for="entidad" class="col-sm-2 col-form-label">Entidad Federal:</label>
             <div class="col-sm-10">
-                <input type="text" name="entidad" value="{{isset( $persona->entidad)?$persona->entidad:'' }}" class="form-control" placeholder="Ej: Falcón" id="entidad">
+                <input type="text" name="entidad" value="{{isset( $persona->direccion->entidad)?$persona->direccion->entidad:'' }}" class="form-control" placeholder="Ej: Falcón" id="entidad">
             </div>
         </div>
 
         <div class="row mb-3">
             <label for="municipio" class="col-sm-2 col-form-label">Municipio:</label>
             <div class="col-sm-10">
-                <input type="text" name="municipio" value="{{isset( $persona->municipio)?$persona->municipio:'' }}" class="form-control" placeholder="Ej: Colina" id="municipio">
+                <input type="text" name="municipio" value="{{isset( $persona->direccion->municipio)?$persona->direccion->municipio:'' }}" class="form-control" placeholder="Ej: Colina" id="municipio">
             </div>
         </div>
             
         <div class="row mb-3">
             <label for="parroquia" class="col-sm-2 col-form-label">Parroquia:</label>
             <div class="col-sm-10">
-                <input type="text" name="parroquia" value="{{isset( $persona->parroquia)?$persona->parroquia:'' }}" class="form-control" placeholder="Ej: La Vela" id="Parroquia">
+                <input type="text" name="parroquia" value="{{isset( $persona->direccion->parroquia)?$persona->direccion->parroquia:'' }}" class="form-control" placeholder="Ej: La Vela" id="Parroquia">
             </div>
         </div>
 
         <div class="row mb-3">
             <label for="sector" class="col-sm-2 col-form-label">Sector:</label>
             <div class="col-sm-10">
-                <input type="text" name="sector" value="{{isset( $persona->sector)?$persona->sector:'' }}" class="form-control" placeholder="Ej: Colombia Sur" id="sector">
+                <input type="text" name="sector" value="{{isset( $persona->direccion->sector)?$persona->direccion->sector:'' }}" class="form-control" placeholder="Ej: Colombia Sur" id="sector">
             </div>
         </div>
                                     

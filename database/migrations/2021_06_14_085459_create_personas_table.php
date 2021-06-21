@@ -13,31 +13,26 @@ class CreatePersonasTable extends Migration
      */
     public function up()
     {
-        
-        Schema::create('personas', function (Blueprint $table) {
-            $table->id();
-            
-            $table->string('nombre')->nullable();
-            $table->string('apellido')->nullable();
-            $table->string('cedula')->unique()->nullable();
-            $table->integer('edad')->nullable();
-            $table->date('fechanac')->nullable();
-            $table->string('genero')->nullanle();
-            $table->integer('telefono')->nullable();
-            $table->integer('movil')->nullable();
-            $table->string('correo')->unique()->nullable();
+        if(! Schema::hasTable('personas')) {
+            Schema::create('personas', function (Blueprint $table) {
+                $table->id();
+                
+                $table->string('nombre');
+                $table->string('apellido');
+                $table->string('cedula')->unique();
+                $table->integer('edad')->nullable();
+                $table->date('fechanac')->nullable();
+                $table->string('genero')->nullanle();
+                $table->string('telefono');
+                $table->string('movil')->nullable();
+                $table->string('correo')->unique()->nullable();
 
-            $table->string('entidad')->nullable();
-            $table->string('municipio')->nullable();
-            $table->string('parroquia')->nullable();
-            $table->string('sector')->nullable();
-            $table->string('direccion')->nullable();
+                $table->integer('serial')->unique()->nullable();
+                $table->integer('codigo')->unique()->nullable();
 
-            $table->integer('serial')->unique()->nullable();
-            $table->integer('codigo')->unique()->nullable();
-            
-            $table->timestamps();
-        });
+                $table->timestamps();
+            });
+        }
 
     }
 

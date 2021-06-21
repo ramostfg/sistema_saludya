@@ -13,17 +13,22 @@ class CreateDireccionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('direccions', function (Blueprint $table) {
-            $table->id();
+        if(! Schema::hasTable('direccions')) {
+            Schema::create('direccions', function (Blueprint $table) {
+                $table->id();
 
-            $table->string('entidad');
-            $table->string('municipio');
-            $table->string('parroquia');
-            $table->integer('sector');
-            $table->date('direccion');
-            
-            $table->timestamps();
-        });
+                $table->string('entidad');
+                $table->string('municipio');
+                $table->string('parroquia');
+                $table->string('sector');
+                $table->string('direccion');
+                
+                $table->unsignedBigInteger('persona_id');
+                $table->foreign('persona_id')->references('id')->on('personas')->onDelete('cascade');
+
+                $table->timestamps();
+            });
+        }
     }
 
     /**

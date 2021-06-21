@@ -3,10 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\Persona;
+use App\Models\Direccion;
 use Illuminate\Http\Request;
 
 class PersonaController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +24,7 @@ class PersonaController extends Controller
     public function index()
     {
         //
-        $datos['personas']=Persona::paginate(10);
+        $datos['personas']=Persona::with(['direccion'])->paginate(10);
         return view('persona.listapersona',$datos);
     }
 
@@ -38,17 +47,48 @@ class PersonaController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        // $datosPersona = request()->all();
-        $datosPersona = request()->except('_token');
-        
-        
-        Persona::insert($datosPersona);
-       
-        return redirect('persona')->with('mensaje','registro creado con éxito');
-       
-        // return response()->json($datosPersona);
+
+        $parametros = request()->except('_token');
+ 
+        try {    
     
+            $persona = Persona::create(
+                array(
+                    'nombre' => $parametros['nombre'],
+                    'apellido' => $parametros['apellido'],
+                    'cedula' => $parametros['cedula'],
+                    'edad' => $parametros['edad'],
+                    'fechanac' => $parametros['fechanac'],
+                    'genero' => $parametros['genero'],
+                    'telefono' => $parametros['telefono'],
+                    'movil' => $parametros['movil'],
+                    'correo' => $parametros['correo'],
+                    'serial' => $parametros['serial'],
+                    'codigo' => $parametros['codigo']
+                )
+            );
+
+            $persona->direccion()->saveMany(
+                [
+                    new Direccion ([
+                        'entidad' => $parametros['entidad'],
+                        'municipio' => $parametros['municipio'],
+                        'parroquia' => $parametros['parroquia'],
+                        'sector' => $parametros['sector'],
+                        'direccion' => $parametros['direccion'],
+                        'persona_id' => $persona->id
+                    ])
+                ]
+            );
+
+            return redirect('persona')->with('mensaje','registro con cedula ' .$persona->cedula. ' creado con éxito');
+
+        } catch (\Exception $e) {
+            // Si algo sale mal devolvemos un error.
+            \Log::info('Error creando persona: '.$e);
+            return redirect('persona')->with('mensaje','registro con cedula ' .$persona->cedula. ' no realizado');
+
+        }
        
     }
 
