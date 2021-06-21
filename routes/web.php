@@ -20,56 +20,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-/* 
-Route::get('/persona', function () {
-    return view('persona.listapersona');
-});
-
-Route::get('persona/crearpersona',[PersonaController::class,'create']);
-*/
+Route::get('home', [PersonaController::class, 'index']);
 
 Route::resource('persona',PersonaController::class);
 
 Route::resource('medicamento',MedicamentoController::class);
 
 Auth::routes();
-
-Route::get('/home', [PersonaController::class, 'index']);
-
-//->name('home');
-
-//Route::middleware(['auth', 'second'])->group(function () {  });
-
-Route::group(['middleware'=>'persona'], function(){
-    Route::get('/persona', [PersonaController::class, 'index']);
-    
-    //->name('home');
-});
-
-
-
-
-
-
-
-
-
-
-
-/*
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-*/
