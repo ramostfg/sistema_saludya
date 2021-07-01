@@ -17,11 +17,11 @@ class CreateDireccionsTable extends Migration
             Schema::create('direccions', function (Blueprint $table) {
                 $table->id();
 
-                $table->string('entidad');
-                $table->string('municipio');
-                $table->string('parroquia');
-                $table->string('sector');
-                $table->string('direccion');
+                $table->string('entidad')->nullable();
+                $table->string('municipio')->nullable();
+                $table->string('parroquia')->nullable();
+                $table->string('sector')->nullable();
+                $table->string('direccion')->nullable();
                 
                 $table->unsignedBigInteger('persona_id');
                 $table->foreign('persona_id')->references('id')->on('personas')->onDelete('cascade');

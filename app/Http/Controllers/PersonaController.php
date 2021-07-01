@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Persona;
 use App\Models\Direccion;
+use App\Models\Patologia;
 use Illuminate\Http\Request;
 
 class PersonaController extends Controller
@@ -24,8 +25,8 @@ class PersonaController extends Controller
     public function index()
     {
         //
-        $datos['personas']=Persona::with(['direccion'])->paginate(10);
-        return view('persona.listapersona',$datos);
+            $datos['personas']=Persona::with(['direccion', 'patologia'])->paginate(10);
+            return view('persona.listapersona',$datos);
     }
 
        /**
@@ -81,12 +82,23 @@ class PersonaController extends Controller
                 ]
             );
 
+            $persona->patologia()->saveMany(
+                [
+                    new patologia ([
+                        'nombrepat' => $parametros['nombrepat'],
+                        'descripat' => $parametros['descripat'],
+                        'fechapat' => $parametros['fechapat'],
+                        'persona_id' => $persona->id
+                    ])
+                ]
+            );
+
             return redirect('persona')->with('mensaje','registro con cedula ' .$persona->cedula. ' creado con éxito');
 
         } catch (\Exception $e) {
             // Si algo sale mal devolvemos un error.
             \Log::info('Error creando persona: '.$e);
-            return redirect('persona')->with('mensaje','registro con cedula ' .$persona->cedula. ' no realizado');
+            //return redirect('persona')->with('mensaje','registro con cedula ' .$persona->cedula. ' no realizado');
 
         }
        

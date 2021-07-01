@@ -28,9 +28,9 @@ class Persona extends Model
             'apellido' => 'max:191|required',
             'cedula' => 'min:7|max:8|required',
             'edad' => 'min:1|max:2|required',
-            'fechanac' => 'max:191|required',
+            'fechanac' => 'date_format:' . config('app.date_format') . '|max:11|required',
             'genero' => 'max:191|required',
-            'telefono' => 'date_format:' . config('app.date_format') . '|max:11|required',  
+            'telefono' => 'max:191|required',  
             'movil' => 'min:12|max:191|required',
             'correo' => 'max:191|required',
             'serial' => 'min:10|max:10|required',
@@ -45,19 +45,25 @@ class Persona extends Model
             'apellido' => 'max:191|required',
             'cedula' => 'min:7|max:8|required',
             'edad' => 'min:1|max:2|required',
-            'fechanac' => 'max:191|required',
+            'fechanac' => 'date_format:' . config('app.date_format') . '|max:11|required',
             'genero' => 'max:191|required',
-            'telefono' => 'date_format:' . config('app.date_format') . '|max:11|required',  
+            'telefono' => 'max:191|required',
             'movil' => 'min:12|max:191|required',
             'correo' => 'max:191|required',
             'serial' => 'min:10|max:10|required',
             'codigo' => 'min:10|max:10|required'
         ];
     }
+    
 
     public function direccion()
     {
         return $this->hasOne('App\Models\Direccion', 'persona_id');
+    }
+
+    public function patologia()
+    {
+        return $this->hasOne('App\Models\Patologia', 'persona_id');
     }
 
 }

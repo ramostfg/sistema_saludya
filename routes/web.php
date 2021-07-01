@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PersonaController;
 use App\Http\Controllers\MedicamentoController;
+use App\Http\Controllers\PatologiaController;
 use App\Http\Controllers\HomeController;
 
 /*
@@ -24,6 +25,6 @@ Route::get('home', [PersonaController::class, 'index']);
 
 Route::resource('persona',PersonaController::class);
 
-Route::resource('medicamento',MedicamentoController::class);
+//Route::resource('medicamento',MedicamentoController::class);
 
 Auth::routes();

@@ -1,124 +1,125 @@
 
-<div class="container">
-    <br><h3>DATOS PERSONALES</h3><br>
-        <div class="row mb-3">
-            <label for="nombre" class="col-sm-2 col-form-label">Nombres:</label>
-            <div class="col-sm-10">
-                <input type="text" name="nombre" value="{{isset($persona->nombre)?$persona->nombre:''}}" class="form-control" placeholder="Ej: Ana Maria" id="nombre">
-            </div>
-        </div>
-                                        
-        <div class="row mb-3">
-            <label for="apellido" class="col-sm-2 col-form-label">Apellidos:</label>
-            <div class="col-sm-10">
-                <input type="text" name="apellido" value="{{isset( $persona->apellido)?$persona->apellido:'' }}" class="form-control" placeholder="Ej: Acosta Marin" id="apellido">
-            </div>
-        </div>
+    <br><h4>DATOS PERSONALES</h4>
 
-        <div class="row mb-3">
-            <label for="cedula" class="col-sm-2 col-form-label"> Cédula de Identidad:</label>
-            <div class="col-sm-10">
-                <input type="text" name="cedula" value="{{isset( $persona->cedula)?$persona->cedula:'' }}" class="form-control" placeholder="Ej: V-12333444" id="cedula">                </div>
+            <div class="col-md-4">
+                <label for="nombre" class="form-label">Nombres:</label>
+                <input type="text" name="nombre" value="{{isset($persona->nombre)?$persona->nombre:''}}"class="form-control" id="nombre">
             </div>
-        </div>
-    
-        <div class="row mb-3">
-            <label for="edad" class="col-sm-2 col-form-label">Edad:</label>
-            <div class="col-sm-10">
-                <input type="text" name="edad" value="{{isset( $persona->edad)?$persona->edad:'' }}" class="form-control" placeholder="Ej: 65" id="edad">
-            </div>
-        </div>
 
-        <div class="row mb-3">
-            <label for="fechanac" class="col-sm-2 col-form-label">Fecha de Nacimiento:</label>
-            <div class="col-sm-10">
-                    <input type="date" name="fechanac" value="{{isset( $persona->fechanac)?$persona->fechanac:'' }}" class="form-control" placeholder="Ej: 23-11-1956" id="fechanac">
+            <div class="col-md-4">
+                <label for="apellido" class="form-label">Apellidos:</label>
+                <input type="text" name="apellido" value="{{isset($persona->apellido)?$persona->apellido:''}}" class="form-control" id="apellido" >
             </div>
-        </div>
-            
-        <div class="row mb-3">
-            <label for="genero" class="col-sm-2 col-form-label">Genero:</label>
-            <div class="col-sm-10">
-                    <input type="text" name="genero" value="{{isset( $persona->genero)?$persona->genero:'' }}" class="form-control" placeholder="Ej: Masculino o Femenino" id="genero">
-            </div>
-        </div>
 
-    <br><h3>DATOS DE CONTACTO</h3><br>
-        <div class="row mb-3">
-            <label for="telefono" class="col-sm-2 col-form-label">Teléfono de Casa:</label>
-            <div class="col-sm-10">
-                <input type="text" name="telefono" value="{{isset( $persona->telefono)?$persona->telefono:'' }}" class="form-control" placeholder="Ej: 0269-2510000" id="telefono">
+            <div class="col-md-4">
+                <label for="cedula" class="form-label">Cédula de Identidad:</label>
+                <input type="text" class="form-control" id="cedula" name="cedula" value="{{isset( $persona->cedula)?$persona->cedula:'' }}">
             </div>
-        </div>
 
-        <div class="row mb-3">
-            <label for="movil" class="col-sm-2 col-form-label">Teléfono Móvil:</label>
-            <div class="col-sm-10">
-                <input type="text" name="movil" value="{{isset( $persona->movil)?$persona->movil:'' }}" class="form-control" placeholder="Ej: 0416-6760000" id="movil">
+            <div class="col-md-2">
+                <label for="edad" class="form-label">Edad:</label>
+                <input type="text" class="form-control" id="edad" name="edad" value="{{isset( $persona->edad)?$persona->edad:'' }}">
             </div>
-        </div>
 
-        <div class="row mb-3">
-            <label for="correo" class="col-sm-2 col-form-label">Correo Electrónico:</label>
-            <div class="col-sm-10">
-                <input type="text" name="correo" value="{{isset( $persona->correo)?$persona->correo:'' }}" class="form-control" placeholder="Ej: anamaria@salud.com" id="correo">
+            <div class="col-md-4">
+                <label for="fechanac" class="form-label">Fecha de Nacimiento:</label>
+                <input type="date" class="form-control" name="fechanac" value="{{isset( $persona->fechanac)?$persona->fechanac:'' }} id="fechanac">
             </div>
-        </div>
-
-    <br><h3>DATOS SISTEMA PATRIA</h3><br>                             
-        <div class="row mb-3">
-            <label for="serial" class="col-sm-2 col-form-label">Serial:</label>
-            <div class="col-sm-10">
-                <input type="text" name="serial" value="{{isset( $persona->serial)?$persona->serial:'' }}" class="form-control" placeholder="Ej: 0000900001" id="serial">
-            </div>
-        </div>
         
-        <div class="row mb-3">
-            <label for="codigo" class="col-sm-2 col-form-label">Código:</label>
-            <div class="col-sm-10">
-                <input type="text" name="codigo" value="{{isset( $persona->codigo)?$persona->codigo:'' }}" class="form-control" placeholder="Ej: 0000800001" id="codigo">
+            <div class="col-md-4">
+                <label for="genero" class="form-label">Genero:</label>
+                <input type="text" class="form-control" id="Genero" name="genero" value="{{isset( $persona->genero)?$persona->genero:'' }}">
             </div>
-        </div>
 
+    <br><h4>DATOS DE CONTACTO</h4>
+            <div class="col-md-4">
+                <label for="telefono" class="form-label">Teléfono de Casa:</label>
+                <input type="text" class="form-control" id="telefono" name="telefono" value="{{isset( $persona->telefono)?$persona->telefono:'' }}">
+            </div>
+       
+            <div class="col-md-4">
+                <label for="movil" class="form-label">Teléfono Movil:</label>
+                <input type="text" class="form-control" id="movil" name="movil" value="{{isset( $persona->movil)?$persona->movil:'' }}">
+            </div>
 
-    <br><h3>DATOS DE HABITACIÓN</h3><br>
-        <div class="row mb-3">
-            <label for="entidad" class="col-sm-2 col-form-label">Entidad Federal:</label>
-            <div class="col-sm-10">
-                <input type="text" name="entidad" value="{{isset( $persona->direccion->entidad)?$persona->direccion->entidad:'' }}" class="form-control" placeholder="Ej: Falcón" id="entidad">
+            <div class="col-md-4">
+                <label for="correo" class="form-label">Correo Electrónico:</label>
+                <input type="email" class="form-control" id="correo" name="correo" value="{{isset( $persona->correo)?$persona->correo:'' }}">
             </div>
-        </div>
 
-        <div class="row mb-3">
-            <label for="municipio" class="col-sm-2 col-form-label">Municipio:</label>
-            <div class="col-sm-10">
-                <input type="text" name="municipio" value="{{isset( $persona->direccion->municipio)?$persona->direccion->municipio:'' }}" class="form-control" placeholder="Ej: Colina" id="municipio">
+    <br><h4>DATOS DE PATRIA</h4>
+            <div class="col-md-4">
+                <label for="serial" class="form-label">Serial del Carnet:</label>
+                <input type="text" class="form-control" id="serial" name="serial" value="{{isset( $persona->serial)?$persona->serial:'' }}">
             </div>
-        </div>
-            
-        <div class="row mb-3">
-            <label for="parroquia" class="col-sm-2 col-form-label">Parroquia:</label>
-            <div class="col-sm-10">
-                <input type="text" name="parroquia" value="{{isset( $persona->direccion->parroquia)?$persona->direccion->parroquia:'' }}" class="form-control" placeholder="Ej: La Vela" id="Parroquia">
-            </div>
-        </div>
 
-        <div class="row mb-3">
-            <label for="sector" class="col-sm-2 col-form-label">Sector:</label>
-            <div class="col-sm-10">
-                <input type="text" name="sector" value="{{isset( $persona->direccion->sector)?$persona->direccion->sector:'' }}" class="form-control" placeholder="Ej: Colombia Sur" id="sector">
+            <div class="col-md-4">
+                <label for="codigo" class="form-label">Código de Carnet</label>
+                <input type="text" class="form-control" id="codigo" name="codigo" value="{{isset( $persona->codigo)?$persona->codigo:'' }}">
             </div>
-        </div>
-                                    
-                                    
-        <div class="row mb-3">
-            <label for="direccion" class="col-sm-2 col-form-label">Dirección:</label>
-            <div class="col-sm-10">
-                <input type="text" name="direccion" value="{{isset( $persona->direccion)?$persona->direccion:'' }}" class="form-control" placeholder="Ej: calle 7, casa S/N" id="direccion">
-            </div>
-        </div>
 
-</div>
+    <br><h4>DATOS DE HABITACIÓN</h4>
+            <div class="col-md-4">
+                <label for="entidad" class="form-label">Entidad Federal:</label>
+                <input type="text" class="form-control" id="entidad" name="entidad" value="{{isset( $persona->direccion->entidad)?$persona->direccion->entidad:'' }}">
+            </div>
+
+            <div class="col-md-4">
+                <label for="municipio" class="form-label">Municipio:</label>
+                <input type="text" class="form-control" id="municipio" name="municipio" value="{{isset( $persona->direccion->municipio)?$persona->direccion->municipio:'' }}">
+            </div>
+
+            <div class="col-md-4">
+                <label for="parroquia" class="form-label">Parroquia:</label>
+                <input type="text" class="form-control" id="parroquia" name="parroquia" value="{{isset( $persona->direccion->parroquia)?$persona->direccion->parroquia:'' }}" >
+            </div>
+
+            <div class="col-md-4">
+                <label for="sector" class="form-label">Sector:</label>
+                <input type="text" class="form-control" id="sector" name="sector" value="{{isset( $persona->direccion->sector)?$persona->direccion->sector:'' }}">
+            </div>
+
+            <div class="col-md-8">
+                <label for="direccion" class="form-label">Dirección:</label>
+                <input type="text" class="form-control" id="direccion" name="direccion" value="{{isset( $persona->direccion->direccion)?$persona->direccion->direccion:'' }}">
+            </div>
+
+    <br><h4>DATOS PATOLÓGICOS</h4>
+            <div class="col-md-6">
+                <label for="nombrepat" class="form-label">Nombre de la Patología:</label>
+                <input type="text" class="form-control" id="nombrepat" name="nombrepat" value="{{isset( $persona->patologia->nombrepat)?$persona->patologia->nombrepat:'' }}">
+            </div>
+
+            <div class="col-md-6">
+                <label for="fechapat" class="form-label">Fecha del Informe:</label>
+                <input type="date" class="form-control" id="fechapat" name="fechapat" value="{{isset( $persona->patologia->fechapat)?$persona->patologia->fechapat:'' }}">
+            </div>
+
+            <div class="col-md-12">
+                <label for="descripat" class="form-label">Descripción de la Patología:</label>
+                <textarea class="form-control" id="descripat" rows="3" name="descripat" value="{{isset( $persona->patologia->descripat)?$persona->patologia->descripat:'' }}"></textarea>
+            </div>
+
+    <br><h4>TRATAMIENTO</h4>
+            <div class="col-md-6">
+                <label for="nombremed" class="form-label">Nombre del Medicamento:</label>
+                <input type="text" class="form-control" id="nombremed" name="nombremed" value="{{isset( $patologia->medicamento->nombremed)?$patologia->medicamento->nombremed:'' }}">
+            </div>
+
+            <div class="col-md-6">
+                <label for="tipomed" class="form-label">Tipo de Medicamento:</label>
+                <input type="text" class="form-control" id="tipomed" name="tipomed" value="{{isset( $patologia->medicamento->tipomed)?$patologia->medicamento->tipomed:'' }}">
+            </div>
+
+            <div class="col-md-6">
+                <label for="presentmed" class="form-label">Presentación del Medicamento:</label>
+                <input type="text" class="form-control" id="presentmed" name="descripat" value="{{isset( $patologia->medicamento->presentmed)?$patologia->medicamento->presenmed:'' }}">
+            </div>
+
+            <div class="col-md-6">
+                <label for="frecumed" class="form-label">Frecuencia del Medicamento:</label>
+                <input type="text" class="form-control" id="frecumed" name="descripat" value="{{isset( $patologia->medicamento->frecumed)?$patologia->medicamento->frecumed:'' }}">
+            </div>
 
 <div class="container">
     <table class="table table-light">
