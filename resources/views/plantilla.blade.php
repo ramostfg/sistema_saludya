@@ -25,18 +25,21 @@
     
     <body>
         <div class="container">
+            <img src="imagenes/banneer1.jpg" class="img-fluid" alt="...">
+            <br><h1 class="text-center">Sistema 0800-SaludYa</h1><br>
             <table class="table table table-hover">
                 <thead>
                     <tr>
+                    <th scope="col">
+                            <a class="btn btn" href="{{ url('persona/') }}" role="button">Inicio</a>
+                        </th>
                         <th scope="col">
                             <a class="btn btn" href="{{ url('persona/create') }}" role="button">Registrar Paciente</a>
                         </th>
                         <th scope="col">
                             <a class="btn btn" href="{{ url('persona/') }}" role="button">Ver lista de Pacientes</a>
                         </th>
-                        <th scope="col">
-                            <a class="btn btn" href="#" role="button">Salir</a>
-                        </th>
+                        
                     </tr>
                 </thead>
             </table>

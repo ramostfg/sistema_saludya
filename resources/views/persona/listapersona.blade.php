@@ -1,9 +1,9 @@
 
 @extends('plantilla')
-    @extends('plantilla2')
+
         @extends('layouts.app')
             @section('content')
-                @section('encabezado2')
+
                     @section('encabezado')
                         
                         @if(Session::has('mensaje'))
@@ -19,12 +19,10 @@
                                                 <th>Apellidos</th>
                                                 <th>Cédula</th>
                                                 <th>Edad</th>
-                                                <th>Fecha de Nacimiento</th>
-                                                <th>Telefono</th>
-                                                <th>Movil</th>
-                                                <th>Serial del Carnet</th>
-                                                <th>Correo</th>
-                                                <th>Dirección</th>
+                                                <th>Patología</th>
+                                                <th>Medicamento</th>
+                                                
+                                                <th></th>
                                                 <th></th>
                                                 <th></th>
                                             </tr>
@@ -36,14 +34,16 @@
                                                     <td>{{$persona->id}}</td>
                                                     <td>{{$persona->nombre}}</td>
                                                     <td>{{$persona->apellido}}</td>
-                                                    <td>{{$persona->cedula}}</td>
+                                                    
+                                                    <td>
+                                                    <a href="{{url('/persona/'.$persona->id.'/historia')}}">{{$persona->cedula}}</a>
+                                                    
+                                                    </td>
+                                                    
                                                     <td>{{$persona->edad}}</td>
-                                                    <td>{{$persona->fechanac}}</td>
-                                                    <td>{{$persona->telefono}}</td>
-                                                    <td>{{$persona->movil}}</td>
-                                                    <td>{{$persona->serial}}</td>
-                                                    <td>{{$persona->correo}}</td>
-                                                    <td>{{$persona->direccion->direccion}}</td>
+                                                    <td>{{$persona->medicamento->nombrepat}}</td>
+                                                    <td>{{$persona->medicamento->nombremed}}</td>
+                                                    
                                                     <td><a href="{{url('/persona/'.$persona->id.'/edit')}}">
                                                             <button type="submit" onclick="return confirm('¿Desea editar este registro?')" class="btn btn-dark">EDITAR</button>
                                                         </a>
@@ -55,11 +55,11 @@
                                                             <button type="submit" onclick="return confirm('¿Desea borrar este registro?')" class="btn btn-dark">BORRAR</button>
                                                         </form>                         
                                                     </td>
-                                                </tr>
-                                            @endforeach    
+                                            </tr>
+                                                @endforeach    
                                         </tbody>
                                     </table>
                                 </div>
                     @endsection
-                @endsection
+
             @endsection

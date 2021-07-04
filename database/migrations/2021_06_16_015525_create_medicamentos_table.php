@@ -15,14 +15,17 @@ class CreateMedicamentosTable extends Migration
     {
         Schema::create('medicamentos', function (Blueprint $table) {
             $table->id();
+            $table->string('nombrepat')->nullable();
+            $table->text('descripat')->nullable();
+            $table->date('fechapat')->nullable();
 
             $table->string('nombremed')->nullable();
             $table->string('tipomed')->nullable();
             $table->string('presentmed')->nullable();
             $table->string('frecumed')->nullable();
 
-            $table->unsignedBigInteger('patologia_id');
-            $table->foreign('patologia_id')->references('id')->on('patologias')->onDelete('cascade');
+            $table->unsignedBigInteger('persona_id');
+            $table->foreign('persona_id')->references('id')->on('perosanas')->onDelete('cascade');
 
             $table->timestamps();
         });

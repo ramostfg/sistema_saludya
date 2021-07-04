@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Persona;
-use App\Models\Direccion;
-use App\Models\Patologia;
+use App\Models\Medicamento;
 use Illuminate\Http\Request;
 
 class PersonaController extends Controller
@@ -24,10 +23,18 @@ class PersonaController extends Controller
      */
     public function index()
     {
-        //
-            $datos['personas']=Persona::with(['direccion', 'patologia'])->paginate(10);
-            return view('persona.listapersona',$datos);
+    //Función para mostrar lista de personas en el inicio
+        $personas=Persona::all();
+        return view('persona.listapersona',compact('personas'));
     }
+
+    //Función para visualizar el detalle de la historia medica del paciente
+    /*public function historia($id)
+    {
+        $personas=Persona::findOrFail($id);
+        return view('persona.historia', compact('personas'));
+            
+    }*/
 
        /**
      * Show the form for creating a new resource.
@@ -65,40 +72,49 @@ class PersonaController extends Controller
                     'movil' => $parametros['movil'],
                     'correo' => $parametros['correo'],
                     'serial' => $parametros['serial'],
-                    'codigo' => $parametros['codigo']
+                    'codigo' => $parametros['codigo'],
+                    'entidad' => $parametros['entidad'],
+                    'municipio' => $parametros['municipio'],
+                    'parroquia' => $parametros['parroquia'],
+                    'sector' => $parametros['sector'],
+                    'direccion' => $parametros['direccion']
                 )
             );
 
-            $persona->direccion()->saveMany(
-                [
-                    new Direccion ([
-                        'entidad' => $parametros['entidad'],
-                        'municipio' => $parametros['municipio'],
-                        'parroquia' => $parametros['parroquia'],
-                        'sector' => $parametros['sector'],
-                        'direccion' => $parametros['direccion'],
+            $persona = Medicamento::create(
+                array(
+                    'nombrepat' => $parametros['nombrepat'],
+                        'descripat' => $parametros['descripat'],
+                        'fechapat' => $parametros['fechapat'],
+                        'nombremed' => $parametros['nombremed'],
+                        'tipomed' => $parametros['tipomed'],
+                        'presentmed' => $parametros['presentmed'],
+                        'frecumed' => $parametros['frecumed'],
                         'persona_id' => $persona->id
-                    ])
-                ]
+
+                     )
             );
 
-            $persona->patologia()->saveMany(
-                [
-                    new patologia ([
+ /*               [
+                    new medicamento ([
                         'nombrepat' => $parametros['nombrepat'],
                         'descripat' => $parametros['descripat'],
                         'fechapat' => $parametros['fechapat'],
+                        'nombremed' => $parametros['nombremed'],
+                        'tipomed' => $parametros['tipomed'],
+                        'presentmed' => $parametros['presentmed'],
+                        'frecumed' => $parametros['frecumed'],
                         'persona_id' => $persona->id
                     ])
                 ]
-            );
-
+            );*/
+            
             return redirect('persona')->with('mensaje','registro con cedula ' .$persona->cedula. ' creado con éxito');
 
         } catch (\Exception $e) {
             // Si algo sale mal devolvemos un error.
             \Log::info('Error creando persona: '.$e);
-            //return redirect('persona')->with('mensaje','registro con cedula ' .$persona->cedula. ' no realizado');
+            return redirect('persona')->with('mensaje','registro con cedula ' .$persona->cedula. ' no realizado');
 
         }
        
@@ -125,7 +141,14 @@ class PersonaController extends Controller
     {
         //
         $persona=Persona::findOrFail($id);
-        return view('persona.editarpersona',compact('persona'))->with('mensaje','registro actualizado con éxito');
+        return view('persona.editarpersona', compact('persona'));
+        //$persona=Persona::findOrFail($id);
+        //return view('persona.editarpersona',compact('persona'));
+        //->with('mensaje','registro actualizado con éxito');
+        //$persona=Medicamento::findOrFail($id);
+        //return view('persona.editarpersona',compact('persona'));
+
+
     }
 
     /**
@@ -138,11 +161,15 @@ class PersonaController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $datosPersona = request()->except(['_token','_method']);
-        Persona::where('id','=',$id)->update($datosPersona);
+        $personaUpdate=Persona::findOrFail($id);
+        Persona::where('id','=',$id)->update($personaUpdate);
+        $personaUpdate->save();
+        return back()->with('mensaje','datos actualizados con exito');
+       /* 
+        
 
         $persona=Persona::findOrFail($id);
-        return view('persona.editarpersona',compact('persona'))->with('mensaje','registro actualizado con éxito');
+        return view('persona.editarpersona',compact('persona'))->with('mensaje','registro actualizado con éxito');*/
     }
 
     /**

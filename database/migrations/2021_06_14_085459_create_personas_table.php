@@ -30,6 +30,12 @@ class CreatePersonasTable extends Migration
                 $table->integer('serial')->unique()->nullable();
                 $table->integer('codigo')->unique()->nullable();
 
+                $table->string('entidad')->nullable();
+                $table->string('municipio')->nullable();
+                $table->string('parroquia')->nullable();
+                $table->string('sector')->nullable();
+                $table->string('direccion')->nullable();
+
                 $table->timestamps();
             });
         }

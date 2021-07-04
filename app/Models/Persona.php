@@ -19,7 +19,7 @@ class Persona extends Model
      * @var string
      */
 
-    protected $fillable = ['nombre', 'apellido', 'cedula', 'edad', 'fechanac', 'genero', 'telefono', 'movil', 'correo', 'serial', 'codigo'];
+    protected $fillable = ['nombre', 'apellido', 'cedula', 'edad', 'fechanac', 'genero', 'telefono', 'movil', 'correo', 'serial', 'codigo', 'entidad', 'municipio', 'parroquia', 'sector', 'direccion'];
 
     public static function storeValidation($request)
     {
@@ -34,7 +34,12 @@ class Persona extends Model
             'movil' => 'min:12|max:191|required',
             'correo' => 'max:191|required',
             'serial' => 'min:10|max:10|required',
-            'codigo' => 'min:10|max:10|required'
+            'codigo' => 'min:10|max:10|required',
+            'entidad' => 'max:191|required',
+            'municipio' => 'max:191|required',
+            'parroquia' => 'max:191|required',
+            'sector' => 'max:191|required',
+            'direccion' => 'max:191|required',
         ];
     }
 
@@ -51,19 +56,20 @@ class Persona extends Model
             'movil' => 'min:12|max:191|required',
             'correo' => 'max:191|required',
             'serial' => 'min:10|max:10|required',
-            'codigo' => 'min:10|max:10|required'
+            'codigo' => 'min:10|max:10|required',
+            'entidad' => 'max:191|required',
+            'municipio' => 'max:191|required',
+            'parroquia' => 'max:191|required',
+            'sector' => 'max:191|required',
+            'direccion' => 'max:191|required',
         ];
     }
     
 
-    public function direccion()
+    public function medicamento()
     {
-        return $this->hasOne('App\Models\Direccion', 'persona_id');
+        return $this->hasOne('App\Models\Medicamento', 'persona_id');
     }
 
-    public function patologia()
-    {
-        return $this->hasOne('App\Models\Patologia', 'persona_id');
-    }
 
 }
