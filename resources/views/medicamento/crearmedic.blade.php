@@ -8,7 +8,7 @@
                     <form action="{{url('/persona')}}" method="post" enctype="multipart/form-data">
                         @csrf
 
-                        @include('medicamento.formmedic',['modo'=>'CREAR']);
+                        @include('medicamento.formmedic',['modo'=>'CREAR'])
                     </form>
                 </div>
 

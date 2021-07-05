@@ -25,7 +25,7 @@
   
     <body>
         <div class="container">
-            <img src="imagenes/banneer1.jpg" class="img-fluid" alt="...">
+            <img src="{{ asset('imagenes/banneer1.jpg') }}" class="img-fluid" alt="...">
             <br><h1 class="text-center">Sistema 0800-SaludYa</h1><br>
             @yield('encabezado2')
         </div> 

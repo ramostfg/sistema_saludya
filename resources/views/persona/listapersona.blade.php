@@ -11,23 +11,20 @@
                         @endif
 
                                 <div class="table-responsive">
-                                    <table class="table table-light">
+                                    <table class="table table-hover">
                                         <thead class="thead-light">
-                                            <tr>
-                                                <th>#</th>
-                                                <th>Nombres</th>
-                                                <th>Apellidos</th>
-                                                <th>Cédula</th>
-                                                <th>Edad</th>
-                                                <th>Fecha de Nacimiento</th>
-                                                <th>Telefono</th>
-                                                <th>Movil</th>
-                                                <th>Serial del Carnet</th>
-                                                <th>Correo</th>
-                                                <th>Dirección</th>
-                                                <th></th>
-                                                <th></th>
-                                            </tr>
+                                            <th>#</th>
+                                            <th>Nombres</th>
+                                            <th>Apellidos</th>
+                                            <th>Cédula</th>
+                                            <th>Edad</th>
+                                            <th>Fecha de Nacimiento</th>
+                                            <th>Telefono</th>
+                                            <th>Movil</th>
+                                            <th>Serial del Carnet</th>
+                                            <th>Correo</th>
+                                            <th>Dirección</th>
+                                            <th></th>
                                         </thead>
                                         
                                         <tbody>
@@ -44,16 +41,23 @@
                                                     <td>{{$persona->serial}}</td>
                                                     <td>{{$persona->correo}}</td>
                                                     <td>{{$persona->direccion->direccion}}</td>
-                                                    <td><a href="{{url('/persona/'.$persona->id.'/edit')}}">
-                                                            <button type="submit" onclick="return confirm('¿Desea editar este registro?')" class="btn btn-dark">EDITAR</button>
-                                                        </a>
-                                                    </td>
-                                                    <td>                                
-                                                        <form action="{{url('/persona/'.$persona->id)}}" method="post">
-                                                            @csrf
-                                                            {{method_field('DELETE')}}
-                                                            <button type="submit" onclick="return confirm('¿Desea borrar este registro?')" class="btn btn-dark">BORRAR</button>
-                                                        </form>                         
+                                                    <td>
+                                                    
+                                                    <div class="btn-group" role="group" aria-label="Basic example">
+                                                        <a href="{{url('/persona/'.$persona->id.'/edit')}}">
+                                                                <button type="submit" onclick="return confirm('¿Desea editar este registro?')" class="btn btn-warning">
+                                                                    Editar
+                                                                </button>
+                                                            </a>
+                                                                                    
+                                                            <form action="{{url('/persona/'.$persona->id)}}" method="post">
+                                                                @csrf
+                                                                {{method_field('DELETE')}}
+                                                                <button type="submit" onclick="return confirm('¿Desea borrar este registro?')" class="btn btn-danger">
+                                                                    Eliminar
+                                                                </button>
+                                                            </form>  
+                                                        </div>
                                                     </td>
                                                 </tr>
                                             @endforeach    
