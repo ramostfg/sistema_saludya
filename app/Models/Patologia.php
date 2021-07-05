@@ -27,6 +27,7 @@ class Patologia extends Model
             'nombrepat'=>'max:191|required',
             'descripat'=>'max:191|required',
             'fechapat'=>'date_format:' . config('app.date_format') . '|max:11|required',
+            'persona_id' => 'integer|exists:personas,id'
         ];
 
     }
@@ -37,12 +38,18 @@ class Patologia extends Model
             'nombrepat'=>'max:191|required',
             'descripat'=>'max:191|required',
             'fechapat'=>'date_format:' . config('app.date_format') . '|max:11|required',
+            'persona_id' => 'integer|exists:personas,id'
         ];
     }
  
     public function persona()
     {
         return $this->belongsTo('App\Models\Personas', 'persona_id', 'id');
+    }
+
+    public function medicamentos()
+    {
+        return $this->hasOne('App\Models\Medicamento', 'patologia_id');
     }
 
 }

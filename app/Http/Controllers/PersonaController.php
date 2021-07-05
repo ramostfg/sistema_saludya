@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Persona;
 use App\Models\Direccion;
 use App\Models\Patologia;
+use App\Models\Medicamento;
 use Illuminate\Http\Request;
 
 class PersonaController extends Controller
@@ -50,7 +51,7 @@ class PersonaController extends Controller
     {
 
         $parametros = request()->except('_token');
- 
+
         try {    
     
             $persona = Persona::create(
@@ -82,13 +83,23 @@ class PersonaController extends Controller
                 ]
             );
 
-            $persona->patologia()->saveMany(
+            $patologia = Patologia::create(
+                array(
+                    'nombrepat' => $parametros['nombrepat'],
+                    'descripat' => $parametros['descripat'],
+                    'fechapat' => $parametros['fechapat'],
+                    'persona_id' => $persona->id
+                )
+            );
+
+            $patologia->medicamentos()->saveMany(
                 [
-                    new patologia ([
-                        'nombrepat' => $parametros['nombrepat'],
-                        'descripat' => $parametros['descripat'],
-                        'fechapat' => $parametros['fechapat'],
-                        'persona_id' => $persona->id
+                    new Medicamento ([
+                        'nombremed' => $parametros['nombremed'],
+                        'tipomed' => $parametros['tipomed'],
+                        'presentmed' => $parametros['presentmed'],
+                        'frecumed' => $parametros['frecumed'],
+                        'patologia_id' => $patologia->id
                     ])
                 ]
             );
@@ -98,7 +109,7 @@ class PersonaController extends Controller
         } catch (\Exception $e) {
             // Si algo sale mal devolvemos un error.
             \Log::info('Error creando persona: '.$e);
-            //return redirect('persona')->with('mensaje','registro con cedula ' .$persona->cedula. ' no realizado');
+            return redirect('persona')->with('mensaje','registro con cedula no realizado');
 
         }
        
@@ -123,9 +134,8 @@ class PersonaController extends Controller
      */
     public function edit($id)
     {
-        //
-        $persona=Persona::findOrFail($id);
-        return view('persona.editarpersona',compact('persona'))->with('mensaje','registro actualizado con éxito');
+        $persona = Persona::with(['direccion', 'patologia','patologia.medicamentos'])->findOrFail($id);
+        return view('persona.editarpersona',compact('persona'));
     }
 
     /**
@@ -138,11 +148,64 @@ class PersonaController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $datosPersona = request()->except(['_token','_method']);
-        Persona::where('id','=',$id)->update($datosPersona);
+        $parametros = request()->except(['_token','_method']);
 
-        $persona=Persona::findOrFail($id);
-        return view('persona.editarpersona',compact('persona'))->with('mensaje','registro actualizado con éxito');
+        try {
+            $persona = Persona::with(['direccion', 'patologia','patologia.medicamentos'])->findOrFail($id);
+        
+            if ($persona->count() > 0) {
+                $persona->update(
+                    array(
+                        'nombre' => $parametros['nombre'],
+                        'apellido' => $parametros['apellido'],
+                        'cedula' => $parametros['cedula'],
+                        'edad' => $parametros['edad'],
+                        'fechanac' => $parametros['fechanac'],
+                        'genero' => $parametros['genero'],
+                        'telefono' => $parametros['telefono'],
+                        'movil' => $parametros['movil'],
+                        'correo' => $parametros['correo'],
+                        'serial' => $parametros['serial'],
+                        'codigo' => $parametros['codigo']
+                    )
+                );
+                
+                Direccion::findOrFail($persona->direccion->id)->update(
+                    array(
+                        'entidad' => $parametros['entidad'],
+                        'municipio' => $parametros['municipio'],
+                        'parroquia' => $parametros['parroquia'],
+                        'sector' => $parametros['sector'],
+                        'direccion' => $parametros['direccion']
+                    )
+                );
+
+                Patologia::findOrFail($persona->patologia->id)->update(
+                    array(
+                        'nombrepat' => $parametros['nombrepat'],
+                        'descripat' => $parametros['descripat'],
+                        'fechapat' => $parametros['fechapat']
+                    )
+                );
+
+                Medicamento::findOrFail($persona->patologia->medicamentos->id)->update(
+                    array(
+                        'nombremed' => $parametros['nombremed'],
+                        'tipomed' => $parametros['tipomed'],
+                        'presentmed' => $parametros['presentmed'],
+                        'frecumed' => $parametros['frecumed']
+                    )
+                );
+
+                return view('persona',compact('persona'))->with('mensaje','registro actualizado con éxito');
+            }
+
+        } catch (\Exception $e) {
+            // Si algo sale mal devolvemos un error.
+            \Log::info('Error actualizando datos de la persona: '.$e);
+            return redirect('persona')->with('mensaje','Registro con cedula no actualizado');
+
+        }
     }
 
     /**
