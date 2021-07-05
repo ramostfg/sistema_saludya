@@ -23,7 +23,6 @@ class CreatePatologiasTable extends Migration
             $table->unsignedBigInteger('persona_id');
             $table->foreign('persona_id')->references('id')->on('personas')->onDelete('cascade');
 
-
             $table->timestamps();
         });
     }
