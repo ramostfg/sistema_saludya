@@ -5,6 +5,8 @@ use App\Http\Controllers\PersonaController;
 use App\Http\Controllers\MedicamentoController;
 use App\Http\Controllers\PatologiaController;
 use App\Http\Controllers\HomeController;
+use App\Models\Persona;
+use App\Models\Medicamento;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,15 +18,26 @@ use App\Http\Controllers\HomeController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Auth::routes();
 
 Route::get('/', function () {
     return view('welcome');
 });
 
+//Route::get('persona/historia/{id}', 'PersonaController@historia')->name('persona.historia'); 
+
 Route::get('home', [PersonaController::class, 'index']);
 
-Route::resource('persona',PersonaController::class);
+//Route::get('/persona/historia', [PersonaController::class, 'index']);
+
+Route::get('/editarpersona/{id}','[PersonaController@edit')->name('persona.editarpersona');
+
+Route::put('/editarpersona/{id}','[PersonaController@update')->name('persona.editarpersona');
+
+Route::resource('persona', PersonaController::class);
+
+
 
 //Route::resource('medicamento',MedicamentoController::class);
 
-Auth::routes();
+
